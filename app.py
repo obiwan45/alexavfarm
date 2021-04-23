@@ -78,6 +78,7 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
         self.writer.write(response)
         with open('sendToAlexa.txt', 'w') as outfile:
             outfile.write(response.encode())
+            outfile.close()
 
 
 
