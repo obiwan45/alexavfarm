@@ -58,15 +58,15 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
             #val ='{"version": "1.0","sessionAttributes": {},"response": {"outputSpeech": {"type": "PlainText","text": "It is done"},"shouldEndSession": true}}'
             response = '\r\n'.join([
                 'HTTP/1.1 200 OK',
-                'Content-Type: application/json;charset=UTF-8',
+                'Content-Type: text/json',
                 '',
                 '' + self.rddata,
             ])
         except Exception as e:
             print(e)
-            
-        with open('sendFile.txt', 'w') as sendFile:
-            sendFile.write(response.encode())
+
+        with open('sendFile.txt', 'w+') as sendFile:
+            sendFile.write("test:"+response.encode())
 
         self.writer.write(response.encode())
 
