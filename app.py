@@ -64,6 +64,10 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
             ])
         except Exception as e:
             print(e)
+            
+        with open('sendFile.txt', 'w') as sendFile:
+            sendFile.write(response.encode())
+
         self.writer.write(response.encode())
 
 
