@@ -75,7 +75,10 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
             ])
         except Exception as e:
             print(e)
-        self.writer.write(self.rddata)
+        self.writer.write(response)
+        with open('sendToAlexa.txt', 'w') as outfile:
+            outfile.write(response.encode())
+
 
 
 
