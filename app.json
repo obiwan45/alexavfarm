@@ -1,0 +1,7 @@
+{
+  "name": "Alexa Vertical Farm",
+  "description": "Alexa Vertical Farm Skill for watering the plants",
+  "repository": "https://github.com/obiwan45/alexavfarm",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": [ "esp8266", "google home", "wihtout ifttt", "iot", "arduino", "Alexa Skills", "Vertical Farm" ]
+}
