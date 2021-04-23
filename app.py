@@ -46,18 +46,8 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
             alexaRequest = self.reader._buffer.decode('utf-8')
             #print("Req-->"+alexaRequest)
             RequestJson = json.loads(alexaRequest)['request']['intent']['slots']
-            IntentName = json.loads(alexaRequest)['request']['intent']
-
-            if 'WaterThePlant' in IntentName['name']:
-                print({"cmd":"execute","param":"water","value":"null","target":"all"})
-                jsonRequest = {"cmd": "execute", "param": "water","value": "null", "target": "all"}
-            # elif 'SoilMoisture' in IntentName['name']:
-            #     print({"object":obj,"value":value,"query":"cmd"})
-            #     jsonRequest = {"object": obj.lower(), "value": value, "query": "cmd"}
-            # elif 'TempHumidity' in IntentName['name']:
-            #     print({"object":obj,"value":value,"query":"cmd"})
-            #     jsonRequest = {"object": obj.lower(), "value": value, "query": "cmd"}
-
+            jsonRequest = {"query": "cmd"}
+            
             with open('data.json', 'w') as outfile:
                 json.dump(json.dumps(jsonRequest), outfile)
                 #await self.rwebsocket.send(alexaRequest)
@@ -75,8 +65,7 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
             ])
         except Exception as e:
             print(e)
-        self.writer.write(response)
-
+        self.writer.write(response.encode())
 
 
 
@@ -129,7 +118,6 @@ asyncio.selector_events._SelectorSocketTransport._read_ready = _read_ready
 port = int(os.getenv('PORT', 5687))#5687
 start_server = websockets.serve(ws_handler, '', port, klass=HttpWSSProtocol)
 # logger.info('Listening on port %d', port)
-print("Server Started")
+
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
-
