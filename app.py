@@ -58,7 +58,7 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
             #val ='{"version": "1.0","sessionAttributes": {},"response": {"outputSpeech": {"type": "PlainText","text": "It is done"},"shouldEndSession": true}}'
             response = '\r\n'.join([
                 'HTTP/1.1 200 OK',
-                'Content-Type: text/json',
+                'Content-Type: application/json;charset=UTF-8',
                 '',
                 '' + self.rddata,
             ])
