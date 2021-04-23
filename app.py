@@ -1,4 +1,3 @@
-
 import websockets
 import asyncio
 import json
@@ -47,6 +46,7 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
             alexaRequest = self.reader._buffer.decode('utf-8')
             #print("Req-->"+alexaRequest)
             RequestJson = json.loads(alexaRequest)['request']['intent']['slots']
+            
 
             if 'is' not in RequestJson['query'].values() and 'what' not in RequestJson['query'].values():
 
